@@ -5,13 +5,13 @@ export const EditExercisePage = ({ exerciseToEdit }) => {
 	//instead of manually type the value for editing, use the existing value.
 
 	const [name, setName] = useState(exerciseToEdit && exerciseToEdit.name);
-	const [reps, setRep] = useState(exerciseToEdit && exerciseToEdit.reps);
-	const [weight, setWeight] = useState(exerciseToEdit && exerciseToEdit.weight);
-	const [unit, setUnit] = useState(exerciseToEdit && exerciseToEdit.unit);
+	const [description, setDescription] = useState(exerciseToEdit && exerciseToEdit.description);
+	const [score, setScore] = useState(exerciseToEdit && exerciseToEdit.score);
+	const [urgency, setUrgency] = useState(exerciseToEdit && exerciseToEdit.urgency);
 	const [date, setDate] = useState(exerciseToEdit && exerciseToEdit.date);
 	//call the backend post method on/exercises to create a new exercise and the use the useHistory hook to redirect to the home page
 	const handleChange = (e) =>{
-		setUnit(e.target.value)
+		setUrgency(e.target.value)
 	}
 	
 	const history = useHistory();
@@ -23,9 +23,9 @@ export const EditExercisePage = ({ exerciseToEdit }) => {
 			},
 			body: JSON.stringify({
 				name: name,
-				reps: reps,
-				weight: weight,
-				unit: unit,
+				description: description,
+				score: score,
+				urgency: urgency,
 				date: date,
 			}),
 		});
@@ -40,7 +40,7 @@ export const EditExercisePage = ({ exerciseToEdit }) => {
 
 	return (
 		<div className='inputField'>
-			<h1 className='addPage'>Edit Exercise</h1>
+			<h1 className='addPage'>Edit Assignment</h1>
 
 			<input
 				className='inputSlot'
@@ -50,19 +50,19 @@ export const EditExercisePage = ({ exerciseToEdit }) => {
 			/>
 			<input
 				className='inputSlot'
-				type='number'
-				value={reps}
-				onChange={(e) => setRep(e.target.value)}
+				type='text'
+				value={description}
+				onChange={(e) => setDescription(e.target.value)}
 			/>
 			<input
 				className='inputSlot'
 				type='number'
-				value={weight}
-				onChange={(e) => setWeight(e.target.value)}
+				value={score}
+				onChange={(e) => setScore(e.target.value)}
 			/>
-			<select name="unit" id="unit-select" onChange={handleChange } value={unit}>
-			<option value="lbs">lbs</option>
-			<option value="kgs">kgs</option>
+			<select name="unit" id="unit-select" onChange={handleChange } value={urgency}>
+			<option value="urgent">urgent</option>
+			<option value="not urgent">not urgent</option>
 			</select>
 			<input
 				className='inputSlot'

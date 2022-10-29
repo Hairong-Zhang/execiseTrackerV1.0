@@ -11,9 +11,9 @@ function Exercise({ exercise, onDelete, onEdit }) {
 	return (
 		<tr>
 			<td>{exercise.name}</td>
-			<td>{exercise.reps}</td>
-			<td>{exercise.weight}</td>
-			<td>{exercise.unit}</td>
+			<td>{exercise.description}</td>
+			<td>{exercise.score}</td>
+			<td>{exercise.urgency}</td>
 			<td>{dateMDY}</td>
 
 			<td>
@@ -27,7 +27,7 @@ function Exercise({ exercise, onDelete, onEdit }) {
 			<MdDeleteForever
                     onClick={() => {
                         if (
-                            window.confirm('Are you sure you want to delete this exercise?')
+                            window.confirm('Are you sure you want to delete this assignment?')
                         ) {
                             onDelete(exercise._id);
                         }

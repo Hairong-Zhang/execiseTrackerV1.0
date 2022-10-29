@@ -40,12 +40,12 @@ function HomePage({ setExerciseToEdit }) {
 	return (
 		<div>
 			<div className='home'>
-				<h2 className='header'>List of Exercise</h2>
-				<body>You can add, edit, and delete an exercise log here.</body>
+				<h2 className='header'>List of Assignment</h2>
+				<body>You can add, edit, and delete an assignment log here.</body>
 			</div>
 			<div>
 				<Link to='/add' className='addExercise'>
-					Add Exercise
+					Add Assignment
 				</Link>
 			</div>
 			<ExerciseList

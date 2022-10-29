@@ -23,18 +23,17 @@ const exerciseSchema = mongoose.Schema({
 		type: String,
 		required: true,
 	},
-	reps: {
-		type: Number,
-		required: false,
-	},
-	weight: {
-		type: Number,
-		required: false,
-	},
-	// unit type string and only allow "kgs" or "lbs"
-	unit: {
+	description: {
 		type: String,
-		enum: ['kgs', 'lbs'],
+		required: false,
+	},
+	score: {
+		type: Number,
+		required: false,
+	},
+	// urgency type string and only allow "kgs" or "lbs"
+	urgency: {
+		type: String,
 		required: true,
 	},
 	//date format MM-DD-YYYY
@@ -47,12 +46,15 @@ const exerciseSchema = mongoose.Schema({
 const Exercise = mongoose.model('Exercise', exerciseSchema);
 
 //POST method The request body will be a JSON object with all the 5 properties listed in the data model.
-const createExercise = async (name, reps, weight, unit, date) => {
+const createExercise = async (name, description
+, score, urgency, date) => {
 	const exercise = new Exercise({
 		name: name,
-		reps: reps,
-		weight: weight,
-		unit: unit,
+		description
+: description
+,
+		score: score,
+		urgency: urgency,
 		date: date,
 	});
 	return await exercise.save();
@@ -65,12 +67,15 @@ const findExercise = async () => {
 };
 
 //PUT method The request body will be a JSON object with all the 5 properties listed in the data model, return with json object with the updated document, code 200
-const replaceExercise = async (id, name, reps, weight, unit, date) => {
+const replaceExercise = async (id, name, description
+, score, urgency, date) => {
 	const query = await Exercise.findByIdAndUpdate(id, {
 		name: name,
-		reps: reps,
-		weight: weight,
-		unit: unit,
+		description
+: description
+,
+		score: score,
+		urgency: urgency,
 		date: date,
 	});
 	return query;

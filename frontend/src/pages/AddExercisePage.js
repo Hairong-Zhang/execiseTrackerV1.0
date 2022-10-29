@@ -3,12 +3,12 @@ import { useHistory } from 'react-router-dom';
 
 export const AddExercisePage = () => {
 	const [name, setName] = useState('');
-	const [rep, setRep] = useState('');
-	const [weight, setWeight] = useState('');
-	const [unit, setUnit] = useState('lbs');
+	const [description, setDescription] = useState('');
+	const [score, setScore] = useState(0);
+	const [urgency, setUrgency] = useState('');
 	const [date, setDate] = useState('');
 	const handleChange = (e) =>{
-		setUnit(e.target.value)
+		setUrgency(e.target.value)
 	}
 	
 	//call the backend post method on/exercises to create a new exercise and the use the useHistory hook to redirect to the home page
@@ -21,10 +21,9 @@ export const AddExercisePage = () => {
 			},
 			body: JSON.stringify({
 				name: name,
-				reps: rep,
-
-				weight: weight,
-				unit: unit,
+				description: description,
+				score: score,
+				urgency: urgency,
 				date: date,
 			}),
 			
@@ -33,7 +32,7 @@ export const AddExercisePage = () => {
 			alert('Exercise added successfully');
 			history.push('/');
 		} else {
-			console.log(unit)
+			console.log(urgency)
 			alert(`Failed to add exercise, status code: ${response.status}`);
 			console.log(response);
 		}
@@ -41,8 +40,8 @@ export const AddExercisePage = () => {
 
 	return (
 		<div className='inputField'>
-			<h1 className='addPage'>Add Exercise</h1>
-			<body>You can add a new exercise here. Reps and Weight are optional.</body>
+			<h1 className='addPage'>Add Assignment</h1>
+			<body>You can add a new assignment here. Describption, score, and urgency are optional.</body>
 			<input
 				className='inputSlot'
 				type='text'
@@ -52,24 +51,25 @@ export const AddExercisePage = () => {
 			/>
 			<input
 				className='inputSlot'
-				type='number'
-				placeholder='Enter reps here'
-				value={rep}
-				onChange={(e) => setRep(e.target.value)}
+				type='text'
+				placeholder='Enter description here'
+				value={description}
+				onChange={(e) => setDescription(e.target.value)}
 			/>
 			<input
 				className='inputSlot'
 				type='number'
-				placeholder='Enter weight here.'
-				value={weight}
-				onChange={(e) => setWeight(e.target.value)}
+				placeholder='Enter score worth here.'
+				value={score}
+				onChange={(e) => setScore(e.target.value)}
 			/>
-			<select name="unit" id="unit-select" onChange={handleChange } value={unit}>
-			<option value="lbs">lbs</option>
-			<option value="kgs">kgs</option>
-   
-			</select>
-				
+				<input
+				className='inputSlot'
+				type='text'
+				placeholder='Enter urgency here'
+				value={urgency}
+				onChange={(e) => setUrgency(e.target.value)}
+			/>
 			
 			<input
 				className='inputSlot'

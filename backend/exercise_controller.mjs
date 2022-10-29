@@ -12,9 +12,9 @@ app.use(express.json());
  * Create a new movie with the title, year and language provided in the body
  */
 app.post('/exercises', (req, res) => {
-	const { name, reps, weight, unit, date } = req.body;
+	const { name, description, score, urgency, date } = req.body;
 	exerciseModel
-		.createExercise(name, reps, weight, unit, date)
+		.createExercise(name, description, score, urgency, date)
 		.then((exercise) => res.status(201).json(exercise))
 		.catch((err) => res.status(500).json(err));
 });
@@ -35,9 +35,9 @@ app.get('/exercises', (req, res) => {
  */
 app.put('/exercises/:_id', (req, res) => {
 	const { _id } = req.params;
-	const { name, reps, weight, unit, date } = req.body;
+	const { name, description, score, urgency, date } = req.body;
 	exerciseModel
-		.replaceExercise(_id, name, reps, weight, unit, date)
+		.replaceExercise(_id, name, description, score, urgency, date)
 		.then((exercise) => res.status(200).json(exercise))
 		.catch((err) => res.status(500).json(err));
 });
