@@ -88,17 +88,17 @@ th {
 	width: auto;
 }
 
-nav a{
+nav a {
 	font-size: x-large;
 }
-  
+
 nav {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
 	border: 2px black solid;
-	background-color:#bbe4e9 ;
-  }
+	background-color: #bbe4e9;
+}
 
 .addExercise {
 	background-color: #0446aa;
@@ -112,4 +112,17 @@ nav {
 
 	font-size: 2rem;
 	width: 100%;
+}
+.showUr {
+	background-color: #04aa6d;
+	color: white;
+	padding: 10px;
+	border-radius: 5px;
+	margin-top: 10px;
+	width: auto;
+}
+.buttons {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
 }
