@@ -3,10 +3,13 @@
 import mongoose from 'mongoose';
 
 // Prepare to the database Exercises_db in the MongoDB server running locally on port 27017
-mongoose.connect('mongodb+srv://hairongaid20:1234@cluster0.z8eu6ra.mongodb.net/?retryWrites=true&w=majority', {
-	useNewUrlParser: true,
-	useUnifiedTopology: true,
-});
+mongoose.connect(
+	'mongodb+srv://hairongaid20:1234@cluster0.z8eu6ra.mongodb.net/?retryWrites=true&w=majority',
+	{
+		useNewUrlParser: true,
+		useUnifiedTopology: true,
+	}
+);
 
 // Connect to to the database
 const db = mongoose.connection;
@@ -46,13 +49,10 @@ const exerciseSchema = mongoose.Schema({
 const Exercise = mongoose.model('Exercise', exerciseSchema);
 
 //POST method The request body will be a JSON object with all the 5 properties listed in the data model.
-const createExercise = async (name, description
-, score, urgency, date) => {
+const createExercise = async (name, description, score, urgency, date) => {
 	const exercise = new Exercise({
 		name: name,
-		description
-: description
-,
+		description: description,
 		score: score,
 		urgency: urgency,
 		date: date,
@@ -66,14 +66,18 @@ const findExercise = async () => {
 	return exercises;
 };
 
+const findExerciseUsingMicroservice = async () => {
+	const exercises = await (
+		await Exercise.find()
+	).filter((exercise) => exercise.urgency === 'Very');
+	return exercises;
+};
+
 //PUT method The request body will be a JSON object with all the 5 properties listed in the data model, return with json object with the updated document, code 200
-const replaceExercise = async (id, name, description
-, score, urgency, date) => {
+const replaceExercise = async (id, name, description, score, urgency, date) => {
 	const query = await Exercise.findByIdAndUpdate(id, {
 		name: name,
-		description
-: description
-,
+		description: description,
 		score: score,
 		urgency: urgency,
 		date: date,
@@ -88,4 +92,10 @@ const deleteExercise = async (id) => {
 	return result;
 };
 
-export { createExercise, findExercise, replaceExercise, deleteExercise };
+export {
+	createExercise,
+	findExercise,
+	replaceExercise,
+	deleteExercise,
+	findExerciseUsingMicroservice,
+};
