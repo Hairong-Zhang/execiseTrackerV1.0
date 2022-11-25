@@ -23,15 +23,9 @@ app.post('/exercises', (req, res) => {
  * Retrieve exercises.
  
  */
-// app.get('/exercises', (req, res) => {
-// 	exerciseModel
-// 		.findExercise()
-// 		.then((exercises) => res.status(200).json(exercises));
-// });
-
 app.get('/exercises', (req, res) => {
 	exerciseModel
-		.findExerciseUsingMicroservice()
+		.findExercise()
 		.then((exercises) => res.status(200).json(exercises));
 });
 

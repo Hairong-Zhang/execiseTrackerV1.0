@@ -7,7 +7,6 @@ import { useHistory } from 'react-router-dom';
 function HomePage({ setExerciseToEdit }) {
 	const history = useHistory();
 	const [exercise, setExercise] = useState([]);
-	const [urgency, setUrgency] = useState(false);
 
 	const loadExercises = async () => {
 		const response = await fetch('/exercises');
@@ -48,25 +47,13 @@ function HomePage({ setExerciseToEdit }) {
 				<Link to='/add' className='addExercise'>
 					Add Assignment
 				</Link>
-				{/* Design a button that after click it change the urgency to true */}
-				<button className='showUr' onClick={() => setUrgency(!urgency)}>
-					Urgency
-				</button>
 			</div>
-			{/* if urgency is false, display the whole list, if urgency is true, display only the excercise with the urgency == very */}
-			{urgency ? (
-				<ExerciseList
-					exercises={exercise.filter((e) => e.urgency.toLowerCase() === 'very')}
-					onDelete={deleteExercise}
-					onEdit={editExercise}
-				/>
-			) : (
-				<ExerciseList
-					exercises={exercise}
-					onDelete={deleteExercise}
-					onEdit={editExercise}
-				/>
-			)}
+
+			<ExerciseList
+				exercises={exercise}
+				onDelete={deleteExercise}
+				onEdit={editExercise}
+			/>
 		</div>
 	);
 }
